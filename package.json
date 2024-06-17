@@ -1,0 +1,36 @@
+{
+  "name": "dependency_analyzer",
+  "version": "1.0.0",
+  "description": "analyzes a NodeJS project's dependency-graph for circular dependencies and dependency conflicts.",
+  "main": "dist/index.js",
+  "bin": {
+    "dependency_analyzer": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "link": "npm run build && npm link && sed -i '1s|^|#!/usr/bin/node\\n|' dist/index.js",
+    "lint": "eslint src/*.ts"
+  },
+  "dependencies": {
+    "find-up": "^5.0.0",
+    "fs-extra": "^11.2.0",
+    "js-yaml": "^4.1.0",
+    "semver": "^7.6.2",
+    "undici": "^6.18.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/js-yaml": "^4.0.9",
+    "@types/semver": "^7.5.8",
+    "@types/tar": "^6.1.13",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.56.0",
+    "globals": "^15.4.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
