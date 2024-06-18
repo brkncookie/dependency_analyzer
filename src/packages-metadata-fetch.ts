@@ -20,16 +20,11 @@ export async function getPackageMetadata(
 const lockFile: LockEntries = Object.create(null);
 
 export function getLock() {
-  (fs.pathExistsSync("./pm_junior-lock.yml") &&
+  fs.pathExistsSync("./pm_junior-lock.yml") &&
     Object.assign(
       lockFile,
       yaml.load(fs.readFileSync("./pm_junior-lock.yml", "utf-8"))
-    )) ||
-    (fs.pathExistsSync("yarn.lock") &&
-      Object.assign(
-        lockFile,
-        yaml.load(fs.readFileSync("yarn.lock", "utf-8"))
-      ));
+    );
 }
 
 export function getLockEntry(pkgName: string, semanticVersion: string) {
@@ -48,10 +43,14 @@ export function getLockEntry(pkgName: string, semanticVersion: string) {
 }
 
 export async function getPackageJson() {
-  const jsonFile = fs.readJsonSync((await findUp("package.json"))!);
+  try {
+    const jsonFile = fs.readJsonSync((await findUp("./package.json"))!);
+    jsonFile.dependencies = jsonFile.dependencies || {};
+    jsonFile.devDependencies = jsonFile.devDependencies || {};
 
-  jsonFile.dependencies = jsonFile.dependencies || {};
-  jsonFile.devDependencies = jsonFile.devDependencies || {};
-
-  return jsonFile;
+    return jsonFile;
+  } catch (err) {
+    console.log("Error while loading a package.json file");
+    process.exit();
+  }
 }
