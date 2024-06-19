@@ -13,7 +13,7 @@
 Install `dependency_analyzer` globally using npm:
 
 ```sh
-$ npm install -g dependency_analyzer
+$ npm install -g @brkncookie/dependency_analyzer
 ```
 
 Or clone this repo and use the link script:

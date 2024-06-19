@@ -1,5 +1,5 @@
 {
-  "name": "dependency_analyzer",
+  "name": "@brkncookie/dependency_analyzer",
   "version": "1.0.0",
   "description": "analyzes a NodeJS project's dependency-graph for circular dependencies and dependency conflicts.",
   "main": "dist/index.js",
