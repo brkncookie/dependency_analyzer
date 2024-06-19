@@ -50,7 +50,7 @@ async function resolvePackages(
   let version;
 
   if (!(version = semver.maxSatisfying(versions, semanticVersion)))
-    throw new Error("Couldn't find a compatible version.");
+    throw new Error("Couldn't find a compatible version for " + pkgName);
   const compatiblePkgVersion = pkgsMetadata[version];
 
   if (!packagesInfo[pkgName]) {

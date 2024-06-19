@@ -43,14 +43,9 @@ export function getLockEntry(pkgName: string, semanticVersion: string) {
 }
 
 export async function getPackageJson() {
-  try {
-    const jsonFile = fs.readJsonSync((await findUp("./package.json"))!);
-    jsonFile.dependencies = jsonFile.dependencies || {};
-    jsonFile.devDependencies = jsonFile.devDependencies || {};
+  const jsonFile = fs.readJsonSync((await findUp("./package.json"))!);
+  jsonFile.dependencies = jsonFile.dependencies || {};
+  jsonFile.devDependencies = jsonFile.devDependencies || {};
 
-    return jsonFile;
-  } catch (err) {
-    console.log("Error while loading a package.json file");
-    process.exit();
-  }
+  return jsonFile;
 }

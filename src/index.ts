@@ -43,11 +43,16 @@ function showResults(
 }
 
 async function dependencyAnalyzer() {
-  const jsonFile = await getPackageJson();
+  try {
+    const jsonFile = await getPackageJson();
 
-  const results = await analyzePackages(jsonFile);
+    const results = await analyzePackages(jsonFile);
 
-  showResults(results.dependencyConflicts, results.circularDependencies);
+    showResults(results.dependencyConflicts, results.circularDependencies);
+  } catch (err) {
+    if (err instanceof Error) console.log("Error: " + err.message);
+    else console.log(err);
+  }
 }
 
 dependencyAnalyzer();
